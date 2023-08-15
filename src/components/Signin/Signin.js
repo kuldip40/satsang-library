@@ -18,8 +18,16 @@ const Signin = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleSignin = (e) => {
+    e.preventDefault();
+    if (!username || !password) return;
+
+    const data = { username, password };
+    console.log(data);
+  };
+
   return (
-    <div className="signin-container">
+    <form className="signin-container">
       <h2>Sign In</h2>
       <div className="input-container">
         <label htmlFor="username">Username:</label>
@@ -42,8 +50,10 @@ const Signin = () => {
           {showPassword ? "Hide" : "Show"}
         </span>
       </div>
-      <button className="signin-button">Sign In</button>
-    </div>
+      <button className="signin-button" onClick={handleSignin}>
+        Sign In
+      </button>
+    </form>
   );
 };
 
