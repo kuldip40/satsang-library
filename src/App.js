@@ -1,5 +1,11 @@
+import AppRoute from "routes/AppRoute";
+
 function App() {
-  return <div>Jay Swaminarayan</div>;
+  return (
+    <div>
+      <AppRoute />
+    </div>
+  );
 }
 
 export default App;
