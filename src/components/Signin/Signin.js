@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Signin.css";
+import { client } from "api-client";
+import axios from "axios";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -18,12 +20,35 @@ const Signin = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSignin = (e) => {
+  const handleSignin = async (e) => {
     e.preventDefault();
     if (!username || !password) return;
 
-    const data = { username, password };
-    console.log(data);
+    const data = { _operation: "login", username, password };
+    const response = await client("/modules/Mobile/api.php", "POST", data);
+    console.log(response);
+
+    // const formData = new FormData();
+    // formData.append("_operation", "login");
+    // formData.append("username", "admin");
+    // formData.append("password", "admin");
+
+    // // Define headers for the FormData
+    // const headers = {
+    //   "Content-Type": "multipart/form-data", // Set the content type to multipart form data
+    // };
+
+    // // Make the POST request with Axios
+    // const response = await axios.post(
+    //   `http://test.karansatsang.org/Satsanglibrary/modules/Mobile/api.php`,
+    //   formData,
+    //   {
+    //     headers,
+    //   }
+    // );
+
+    // // Handle the response
+    // console.log("Response:", response.data);
   };
 
   return (
